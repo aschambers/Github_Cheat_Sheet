@@ -1,0 +1,144 @@
+Github Cheat Sheet
+
+Things to consider about using github:
+1. Git is a version control system allowing users to collaborate easier on a project.
+2. When you make a new branch, your new branch should have all files from master branch, plus additions.
+3. It is possible to make a new branch, with only new files/folders, but it will not have any similarities between it and the master branch so no merge possible.
+4. Each branch is usually the master branch(original repository) plus additions. 
+5. Every time you switch branches from a cloned repository, such as switching from a branch back to master branch, files will change (you’ll notice this if you have the folder/project open alongside your command prompt as you use the command: git checkout master, etc.
+
+Wish to create a repository on your github account?
+1. first configure your github profile in git using git config —global user.name “YOUR NAME” and email using git config —global user.email “YOUR EMAIL”.
+2. You should be able to check these using commands: git config user.name or git config user.email.
+3. Next, find a project (folder) you’d like to push to github and use command: cd PROJECT_NAME.
+4. Now, use this command to initialize a repository: git init (creates link to github repository inside your project).
+5. Now use command: git add . (adds all changes to staging area (snap shot)). 
+6. If you don’t want to add all files in project, you can add folders/files individually using git add (file name).
+7. Now you should commit changes to be pushed to git (be careful, make sure you want to commit them).
+8. Create git repository on github.
+9. set remote origin to that git repository using command: git remote add origin REPOSITORY_NAME.git (example: git clone https://github.com/username/My_Repository.git).
+10. Now that you have your origin set to you git repository on github, you want to push your changes (commit) to that repository using command: git push origin master (pushes files committed in staging area to github).
+11. Now check github, you should see your folder/folders/file/files/etc.
+
+Want to make a new branch on Git (Should do this if you are adding anything, should never change master branch to be safe)?
+1. First you want to git init to initialize git repository in your current directory (cd into the correct folder/project first).
+2. Second you are going to want to create a new branch using command: git branch BRANCHNAME.
+3. Next, you want to use command this command to see branches: git branch.
+4. Now, use the following command to switch to that branch: git checkout BRANCHNAME.
+5. Add files/folders you want to git repository using command: git add (added to staging area)
+6. Now you will want to check status using command: git status (should be in green not red now).
+7. Now you want to commit changes using command: git commit -m “message”.
+8. Now you want to set remote origin to be in your current branch using command: git remote add origin REPOSITORY_NAME.git
+9. If no issues arise, see step (9), else remove origin using command: git remote rm origin.
+10. Now you want to finally push your changes to your new branch using command: git push origin BRANCHNAME.
+11. Finally, check your new branch on github. Should see same files as those in master, plus new files that have been added. 
+
+Want to start from scratch with what is currently on github?                   
+1. Put repository name on desktop in the trash
+2. Delete from trash (careful, make sure you have a backup copy in another folder named something else to be safe).
+3. git clone REPOSITORY_NAME.git (example: git clone https://github.com/username/My_Repository.git)
+4. Check for that REPOSITORY_NAME on the desktop which would be a folder name My_Repository in github.com/username/My_Repository.git
+5. After you see that REPOSITORY_NAME, use command: cd REPOSITORY_NAME if it’s on desktop and current directory with git is desktop.
+6. You should now be inside that repository.
+7. git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+8. git fetch —all
+9. git pull —all
+10. You should now see all branches using command: git branch
+11. If you switch to a branch, you should see contents change depending on what branch you are on.
+
+Want to delete a submodule in staging area or problem you didn’t mean to create?
+1. Git status: should show it in red (staging area). 
+2. git rm --cached -r new_site_features
+    1. should see message below: rm ‘new_site_features”
+3. git status
+    1. file/folder should now be in green rather than red and show message “deleted:    folder_name”
+4. Commit changes using: git commit -m “new sites features deleted”
+5. git push origin master (to push all changes to github, should now see it gone!!!!)
+
+Wish to see all branches from git repository or start from scratch? (useful your clone repository got damaged or something, may want to clone repository first)
+1. Use command: git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done.
+2. Use command: git fetch —all.
+3. Use command: git pull —all.
+4. Note: (it seems pull fetches all branches from all remotes, but just fetch to just be sure first).
+
+Wish to create shorthand for commands, use git aliases?
+1. git config --global alias.co checkout (changes checkout command to co)
+2. git config --global alias.br branch (changes branch command to br)
+3. git config --global alias.ci commit (changes commit command to ci)
+4. git config --global alias.st status (changes status command to st)
+
+Accidentally delete some files?
+1. git reset --soft HEAD^
+2. git rm --cached [files you do not need]
+3. git add [files you need]
+4. git commit -c ORIG_HEAD
+5. Verify the results with gitk or git log --stat
+
+Want to unstage commits (be careful)?
+1. Use command: git reset HEAD, to undo the last commit, unstage files that you previously ran git add on and wish to not include in the next commit snapshot
+2. run command: git rm, to remove files from being tracked in Git. It will also remove them from your working directory.
+3. run command: git stash to quickly save some changes that you're not ready to commit or save, but want to come back to while you work on something else.
+4. Lastly, only use if last resort: git reset —HARD (resets head). This command discards your staged changes and the changes in your working directory. In other words: it resets your 	staging area and working directory to the state they were in at the given commit. This is the most dangerous option and is not working directory safe. 	Any changes not committed will be lost.
+
+Wish to clone repository to track/make changes?
+1. Use command: git clone REPOSITORY_NAME.git (if your folder/project name is the same, this will not work as expected).
+
+Want to delete a branch you created?
+1. git branch -D BRANCHNAME.
+
+Want to switch to a branch?
+1. git checkout BRANCHNAME.
+
+Want to make new branch and switch to it at same time?
+1. git checkout -b BRANCHNAME.
+
+Want to check status of files you made changes to?
+1. git status
+
+Want to add changes to staging area to be committed to git (snapshots)?
+1. git add (filename/foldername/ or . for all)
+
+Want to push changes in branch to github repository?
+1. git push origin BRANCHNAME.
+
+What to do if you get an error while pushing?
+1. git pull origin BRANCHNAME.
+2. Then push changes to git using command: git push origin BRANCHNAME.
+
+Have merge conflicts?
+1. use this command to see changes: git diff.
+2. Check differences and fix as appropriate.
+3. All fixed? Use command: git push origin BRANCHNAME.
+4. Another useful command: git mergetool
+
+Making sure your branch is up to date?
+1. Use command: git checkout BRANCHNAME.
+2. git pull origin BRANCHNAME.
+
+Want to merge a branch into master branch?
+1. git merge BRANCHNAME
+2. Now push changes to github using: git push origin BRANCHNAME.
+
+Sometimes you will want to set a url to reflect git repository, so use command:
+1. git remote set-url https://github.com/username/Project_Name.git
+
+Want to show you commit history?
+1. use command: git log.
+
+Remove file from staging area?
+1. git rm —cached FILENAME/FOLDERNAME, etc.
+
+Rename file in git?
+1. git mv NAME NEW_NAME.
+
+Wish to get data from remote projects?
+1. use command: git fetch
+
+Wish to see last commit?
+1. use command: git last.
+
+Rebase or Merge?
+1. In general the way to get the best of both worlds is to rebase local changes you’ve made but haven’t shared yet before you push them in order to clean up your story, but never rebase anything you’ve pushed somewhere.
+
+Want to take all committed changes on one branch and replay them on another one?
+1. use command: git rebase

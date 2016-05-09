@@ -48,8 +48,8 @@ Want to start from scratch with what is currently on github?
 
 Want to delete a submodule in staging area or problem you didn’t mean to create?
 1. Git status: should show it in red (staging area). 
-2. git rm --cached -r new_site_features
-    1. should see message below: rm ‘new_site_features”
+2. git rm --cached -r BRANCHNAME
+    1. should see message below: rm ‘BRANCHNAME”
 3. git status
     1. file/folder should now be in green rather than red and show message “deleted:    folder_name”
 4. Commit changes using: git commit -m “new sites features deleted”

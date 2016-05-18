@@ -142,3 +142,5 @@ Rebase or Merge?
 
 Want to take all committed changes on one branch and replay them on another one?
 1. use command: git rebase
+
+<!-- end -->

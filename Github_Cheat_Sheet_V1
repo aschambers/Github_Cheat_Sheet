@@ -143,4 +143,10 @@ Rebase or Merge?
 Want to take all committed changes on one branch and replay them on another one?
 1. use command: git rebase
 
+Want to make yourself the root user on mac (so you don't have to type sudo every time)?
+1. sudo chown -R yourusername /Users/yourusername/.config/configstore/
+
+Want to pull another branch changes to your branch?
+1. git pull origin BRANCHNAME
+
 <!-- end -->
